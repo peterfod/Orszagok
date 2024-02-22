@@ -62,6 +62,7 @@ namespace Orszagok
             // 
             // richTextBox1
             // 
+            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.richTextBox1.Location = new System.Drawing.Point(34, 94);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(237, 329);
@@ -111,6 +112,7 @@ namespace Orszagok
             this.btnAtlag.TabIndex = 3;
             this.btnAtlag.Text = "Átlag népesség";
             this.btnAtlag.UseVisualStyleBackColor = true;
+            this.btnAtlag.Click += new System.EventHandler(this.btnAtlag_Click);
             // 
             // lblEredmeny
             // 
@@ -197,6 +199,7 @@ namespace Orszagok
             this.menuEuropaiak.Name = "menuEuropaiak";
             this.menuEuropaiak.Size = new System.Drawing.Size(71, 20);
             this.menuEuropaiak.Text = "Európaiak";
+            this.menuEuropaiak.Click += new System.EventHandler(this.menuEuropaiak_Click);
             // 
             // Form1
             // 
