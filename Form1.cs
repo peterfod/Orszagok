@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace Orszagok
 {
@@ -73,13 +74,30 @@ namespace Orszagok
             {
                 case 0:
                     lblEredmeny.Text = legkisebbnagyobb.Last().Nev + " ";
-                    lblEredmeny.Text += legkisebbnagyobb.Last().Nepesseg.ToString() + " eFő";
+                    lblEredmeny.Text += (legkisebbnagyobb.Last().Nepesseg*1000).ToString("#,##0") + " Fő";
                     break;
                 case 1:
                     lblEredmeny.Text = legkisebbnagyobb.First().Nev + " ";
-                    lblEredmeny.Text += legkisebbnagyobb.First().Nepesseg.ToString() + " eFő";
+                    lblEredmeny.Text += (legkisebbnagyobb.First().Nepesseg * 1000).ToString("#,##0") + " Fő";
                     break;
             }
+        }
+
+        private void btnAtlag_Click(object sender, EventArgs e)
+        {
+            var atlag = lista.Select(x => x.Nepesseg).Average();
+            //var atlag = (from sor in lista
+            //             select sor.Nepesseg).Average();
+            lblEredmeny.Text = atlag.ToString("#,##0.0") + " fő";
+        }
+
+        private void menuEuropaiak_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form2 europaiak = new Form2();
+            europaiak.ShowDialog();
+            europaiak.Dispose();
+            this.Show();
         }
     }
 
@@ -91,6 +109,8 @@ namespace Orszagok
 
         public Orszag(string[] sorok)
         {
+            TextInfo textInfo = new CultureInfo("hu-HU", false).TextInfo;
+            sorok[0] = textInfo.ToTitleCase(sorok[0].ToLower());
             Nev = sorok[0];
             Nepesseg = Convert.ToInt32(sorok[1]);
             Kontinens = sorok[2];
